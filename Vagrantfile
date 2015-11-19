@@ -4,8 +4,6 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "centos/7"
 
-  config.ssh.forward_agent = true
-
   config.vm.provider "virtualbox" do |v|
     v.name = "centos7"
     v.memory = 4096
@@ -13,9 +11,6 @@ Vagrant.configure(2) do |config|
     # v.gui = true
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     v.customize ["modifyvm", :id, "--ioapic", "on"]
-  end
-
-  config.vm.define :centos7 do |centos7|
   end
 
   config.vm.network "private_network", ip: ip
