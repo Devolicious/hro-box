@@ -1,0 +1,17 @@
+---
+- hosts: local
+  user: vagrant
+  sudo: True
+
+  vars:
+    - mysql_root_password: root
+    - hostname: hrorganizer.dev
+    - bash_user: 'vagrant'
+
+  roles:
+    - common
+    - apache
+    - php
+    - mariadb-mysql
+    - composer
+    - { role: mailcatcher, tags: mailcatcher }

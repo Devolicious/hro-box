@@ -1,0 +1,33 @@
+---
+
+# https://serversforhackers.com/setting-up-mailcatcher
+- name: Install dependecies
+  yum: name={{ item }} state=present
+  with_items:
+    - gcc
+    - gcc-c++
+    - sqlite-devel
+    - ruby-devel
+    - redhat-lsb
+    - rubygems
+
+- name: Install mailcatcher
+  gem: name=mailcatcher state=present user_install=no
+
+- name: Set mailcatcher upstart
+  template: src=mailcatcher.conf.j2 dest=/etc/init/mailcatcher.conf
+  notify:
+    - restart mailcatcher
+
+- name: Set mailcatcher config
+  template: src=mailcatcher.ini.j2 dest=/etc/php5/mods-available/mailcatcher.ini
+  notify:
+    - restart php-fpm
+
+- name: Enable mailcatcher mod
+  file: src=/etc/php5/mods-available/mailcatcher.ini dest=/etc/php5/{{ item }}/conf.d/90-mailcatcher.ini mode=755 state=link force=yes
+  with_items:
+    - fpm
+    - cli
+  notify:
+    - restart php-fpm

@@ -1,0 +1,55 @@
+---
+- name: Install common packages
+  yum: name={{ item }} state=latest
+  with_items:
+    - htop
+    - git
+    - vim
+#    - build-essential
+#    - libpq-dev
+#    - libxml2-dev
+#    - libjpeg62
+#    - libjpeg62-dev
+#    - libfreetype6
+#    - libfreetype6-dev
+#    - zlib1g-dev
+#    - imagemagick
+    - curl
+#    - software-properties-common
+#    - python-dev
+#    - python-setuptools
+#    - python-mysqldb
+#    - python-pycurl
+#    - unattended-upgrades
+#    - ruby-dev
+    - acl
+
+#- name: Remove unnec packages
+#  apt: pkg={{ item }} state=absent purge=yes
+#  with_items:
+#    - popularity-contest
+#    - update-manager-core
+#    - landscape-common
+#    - update-notifier-common
+
+#- name: Copy the unattended upgrades file
+#  copy: src=50unattended-upgrades dest=/etc/apt/apt.conf.d/49unattended-upgrades
+
+#- name: Move unattended upgrades cron file to weekly
+#  shell: mv /etc/cron.daily/apt /etc/cron.weekly/apt removes=/etc/cron.daily/apt creates=/etc/cron.weekly/apt
+#
+#- name: Enable unattend upgrades cron
+#  file: path=/etc/cron.weekly/apt mode=755
+#
+#- name: Install language pack nl
+#  apt: pkg=language-pack-nl state=installed
+#
+#- locale_gen: name={{ item }} state=present
+#  with_items:
+#    - nl_BE.utf8
+#    - nl_NL.utf8
+#  ignore_errors: yes
+
+#- name: Disable mlocate cron
+#  file: path=/etc/cron.daily/mlocate mode=644
+#  when: common_disable_mlocate_cron == true
