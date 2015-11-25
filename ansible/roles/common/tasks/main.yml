@@ -53,3 +53,6 @@
 #- name: Disable mlocate cron
 #  file: path=/etc/cron.daily/mlocate mode=644
 #  when: common_disable_mlocate_cron == true
+
+- name: copy selinux config
+  copy: src=etc_selinux_config dest=/etc/selinux/config

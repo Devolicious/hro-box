@@ -1,0 +1,6 @@
+---
+- name: "Install Symfony installer"
+  shell: curl -LsS http://symfony.com/installer -o {{ symfony_installer_path }}
+
+- name: "Make installer executable"
+  file: path={{ symfony_installer_path }} mode=0755

@@ -1,5 +1,5 @@
 
-DirectoryIndex index.php index.html
+DirectoryIndex {{ apache_directory_index }}
 
 {# Set up VirtualHosts #}
 {% for vhost in apache_vhosts %}

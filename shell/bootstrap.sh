@@ -15,3 +15,6 @@ sudo yum -y update
 
 echo -e "\n--- Install ansible ---\n"
 sudo yum install ansible -y -q
+
+echo -e "\n--- Run Ansible development playbook ---\n"
+cd /home/vagrant/sync/ansible && ansible-playbook -i hosts development.yml
